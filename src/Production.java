@@ -1,10 +1,11 @@
 public class Production
 {
-    private double investReaction; //WITH LOOKUP!?!?!?!?
+    private static Double productionCapacity = 100000.00; // Klasse für simulation
+
+
 
     private double capacityChange; //Kapazitätsveränderung
 
-    private static double productionCapacity = 100000; //Produktionskapazität == Produktionsmenge
 
     Production()
     {
@@ -13,51 +14,43 @@ public class Production
 
     public double calculateCapacityChange()
     {
-        setCapacityChange(getInvestReaction() * getProductionCapacity());
+        setCapacityChange(MarketPrice.investReaction * getProductionCapacity());
 
         return getCapacityChange();
     }
-    // Investreaction with lookup
 
-   /* public double calculateInvestReaction()
-    {
 
-    }
-    */
+
 
     public double calculateProductCapacity()
     {
-        return  productionCapacity;
+        setProductionCapacity( getProductionCapacity() + getCapacityChange());
+        return  getProductionCapacity();
     }
 
 
-    public double getInvestReaction()
-    {
-        return investReaction;
-    }
+
+
 
     public double getCapacityChange()
     {
         return capacityChange;
     }
 
-    public static double getProductionCapacity()
+    public static Double getProductionCapacity()
     {
         return productionCapacity;
     }
 
 
-    public void setInvestReaction(double investReaction)
-    {
-        this.investReaction = investReaction;
-    }
+
 
     public void setCapacityChange(double capacityChange)
     {
         this.capacityChange = capacityChange;
     }
 
-    public static void setProductionCapacity(double productionCapacity)
+    public void setProductionCapacity(Double productionCapacity)
     {
         Production.productionCapacity = productionCapacity;
     }

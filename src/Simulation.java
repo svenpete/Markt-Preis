@@ -1,17 +1,25 @@
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.util.ArrayList;
 
 public class Simulation
 {
-    //Simulationsparameter
+    private Double [] marktPreis;
+    private Double [] profit;
+    private Double [] produktionsKapazität;
 
+    public Simulation()
+    {
 
-    public static void main(String[] args)
+    }
+
+    public void simulate(Integer initalTime, Integer finalTime, Integer finalStep)
     {
         DecimalFormatSymbols symbols = DecimalFormatSymbols.getInstance();
         symbols.setGroupingSeparator('.');
-        DecimalFormat   f               =   new DecimalFormat("###,##0.00", symbols);
+
+
+
+        DecimalFormat f                 =   new DecimalFormat("###,##0.00", symbols);
 
         Production      produc          =   new Production();
         Employees       employe         =   new Employees(produc);
@@ -26,42 +34,73 @@ public class Simulation
 
         MarketPrice     marketPrice     =   new MarketPrice(unCost);
 
-            /*
-             int INITIAL_TIME = 0;
-             int FINAL_TIME   = 20;
-             double TIME_STEP = 0.05;
 
 
 
+        Double [] mp = new Double[finalTime];
+        Double [] pC = new Double[finalTime];
+        Double [] prof= new Double[finalTime];
 
-            System.out.println("MarketPrice: " + f.format(marketPrice.getMarketPrice()));
-            System.out.println("Produktionskapazität: " + f.format(produc.getProductionCapacity()));
-            System.out.println("Beschäftigte: " + f.format(employe.computeEmployees()));
+        for (int i = initalTime; i < finalTime ; i = i + finalStep)
+        {
 
-            System.out.println("Arbeitskosten: " + f.format(laCost.calculateCosts()));
-            System.out.println("Kapitalkosten: " + f.format(caCost.calculateCosts()));
-            System.out.println("Materialkosten: " + f.format(maCost.calculateCosts()));
+            // dont change order nor methods  work !
+            System.out.println("Beschäftigte:           "         +   f.format(employe.computeEmployees()) +"\t");
 
-            // dont change order !
-            System.out.println("ProduktionsKosten: " + f.format(proCost.calculateCosts()));
-            System.out.println("Profit: " + f.format(profit.calculateCosts()));
-
-
-            System.out.println("Stückkosten: " + f.format(unCost.calculateCosts()));
-            System.out.println("GewinnMarge: " + f.format(marketPrice.calcBenefitMarge()));
-
-            System.out.println("Fehlanpassung Nachfrage: " + f.format(marketPrice.calcMismatchDemand()));
-            System.out.println("Preisdruck Nachfrage: " + f.format(marketPrice.calcPricePressureDemand()));
-            System.out.println("Fehlanpassung Preis: " + f.format(marketPrice.calcMismatchCost()));
-            System.out.println("Preisdruckkosten: " + f.format(marketPrice.calcPricePressureCosts()));
+            System.out.println("Arbeitskosten:          "         +   f.format(laCost.calculateCosts())+"\t");
+            System.out.println("Kapitalkosten:          "         +   f.format(caCost.calculateCosts()    )+"\t");
+            System.out.println("Materialkosten:         "         +   f.format(maCost.calculateCosts()    )+"\t");
 
 
-            System.out.println("Investreaktio: missing formular");//+   f.format(marketPrice.caclPricePressureCosts()));
-            System.out.println("Kapazitätsveränderung: " + f.format(produc.calculateCapacityChange()));
-            System.out.println("Produktionskapazität: mising formular");
+            System.out.println("ProduktionsKosten:      "         +   f.format(proCost.calculateCosts()   )+"\t");
 
-            System.out.println("Marktpreis: " + f.format(marketPrice.calcMarketPrice()));
-        */
+            prof[i] = profit.getProfit();
+            System.out.println("Profit:                 "         +   f.format(profit.calculateCosts()    )+"\t");
+
+
+            System.out.println("Stückkosten:            "         +   f.format( (unCost.calculateCosts()   ))+"\n");
+
+            System.out.println("GewinnMarge:            "         +   f.format(marketPrice.calcBenefitMarge())+"\t");
+
+            System.out.println("Fehlanpassung Nachfrage:"         +   f.format(marketPrice.calcMismatchDemand())+"\t");
+            System.out.println("Preisdruck Nachfrage:   "         +   f.format(marketPrice.calcPricePressureDemand())+"\t");
+            System.out.println("Fehlanpassung Preis:    "         +   f.format(marketPrice.calcMismatchCost())+"\t");
+            System.out.println("Preisdruckkosten:       "         +   f.format(marketPrice.calcPricePressureCosts())+"\t");
+
+            System.out.println("Investreaktio: "                   +  f.format(marketPrice.calcInvestReaction())+"\t");
+            System.out.println("Kapazitätsveränderung: "           +  f.format(produc.calculateCapacityChange())+"\t");
+
+            pC[i] = Production.getProductionCapacity();
+            System.out.println("Produktionskapazität:"             +  f.format(produc.calculateProductCapacity())+"\t");
+
+            mp[i] = marketPrice.getMarketPrice();
+            System.out.println("Marktpreis:             "          +  f.format(marketPrice.calcMarketPrice())+"\t \n");
+
+        }
+
+        setMarktPreis(mp);
+        setProduktionsKapazität(pC);
+        setProfit(prof);
     }
 
+    public Double[] getProfit() {
+        return profit;
+    }
+
+    public Double[] getProduktionsKapazität() {
+        return produktionsKapazität;
+    }
+
+    private void setMarktPreis(Double[] marktPreis) {
+        this.marktPreis = marktPreis;
+    }
+
+
+    private void setProfit(Double[] profit) {
+        this.profit = profit;
+    }
+
+    private void setProduktionsKapazität(Double[] produktionsKapazität) {
+        this.produktionsKapazität = produktionsKapazität;
+    }
 }

@@ -1,9 +1,9 @@
 public class CapitalCosts extends Costs
 {
-    private final double depreciationRate        = 0.1;    //Abschreibungssatz [1/Year]
-    private final int specificCapitalRequirement = 1;      //spezifischer Kapitalbedarf [€/(Stück/Year)]
+    private final double    depreciationRate            = 0.1;    //Abschreibungssatz [1/Year]
+    private final int       specificCapitalRequirement  = 1;      //spezifischer Kapitalbedarf [€/(Stück/Year)]
 
-    private Production production;
+    private Production production;  // vl ÄNDERN
 
     public CapitalCosts(Production produc)
     {

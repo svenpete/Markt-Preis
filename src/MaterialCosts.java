@@ -19,7 +19,7 @@ public class MaterialCosts extends Costs
     @Override
     public double calculateCosts()
     {
-        setCosts(   getMaterialCost() * getProduction().getProductionCapacity()      );
+        setCosts(   getMaterialCost() * Production.getProductionCapacity()      );
         return getCosts();
     }
 

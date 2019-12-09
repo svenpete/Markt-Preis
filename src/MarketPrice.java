@@ -1,6 +1,6 @@
 public class MarketPrice
 {
-    private     final   int             demand                  = 500000;    //Nachfrage [Stück/Year]
+    private             int             demand                  = 500000;    //Nachfrage [Stück/Year]
     private     final   double          reactionRate            = 0.5;       //Reaktionsrate [1/Year]
     private             double          marketPrice             = 100;       // Vorerst vorgeben zum Testen spätere Implementierung des Marktpreises;
 
@@ -11,7 +11,7 @@ public class MarketPrice
 
     private             double          pricePressureDemand;              //Preisdruck Nachfrage
     private             double          mismatchDemand;                  //Fehlanpassung Nachfrage
-    private             double          investReaction;
+    public static              double          investReaction;
 
     private             UnitCosts       unitCosts;             //Asso
 
@@ -21,11 +21,20 @@ public class MarketPrice
         setUnitCosts(unitCosts);
     }
 
+
     public double calcInvestReaction()
     {
-        if(getBenefitMarge() > 2)
-
-        return getInvestReaction();
+        if(getBenefitMarge() > 1) {
+            setInvestReaction( 1.05);
+        }
+        else if (getBenefitMarge() == 0)
+        {
+            setInvestReaction(1);
+        }
+        else {
+            setInvestReaction(-0.05);
+        }
+        return (int) getInvestReaction();
     }
 
     /** calculating benefit marge
@@ -56,7 +65,7 @@ public class MarketPrice
             return -1;
         }
 
-        if (Production.getProductionCapacity() != 0)
+        if (Production.getProductionCapacity() > 0)
         {
             setMismatchDemand((  getDemand() / Production.getProductionCapacity()) - 1);
 
@@ -65,7 +74,7 @@ public class MarketPrice
         else
         {
             System.out.println("ERROR: PRODUCTION CAPACITY IS LESS THAN ZERO");
-            return 404.00;
+            return 1;
         }
 
 
