@@ -3,7 +3,7 @@ import java.text.DecimalFormatSymbols;
 
 public class Simulation
 {
-    private Double [] marktPreis;
+    private Double [] marketPrice;
     private Double [] profit;
     private Double [] produktionsKapazität;
 
@@ -37,7 +37,7 @@ public class Simulation
 
 
 
-        Double [] mp = new Double[finalTime];
+        Double [] map = new Double[finalTime];
         Double [] pC = new Double[finalTime];
         Double [] prof= new Double[finalTime];
 
@@ -73,12 +73,12 @@ public class Simulation
             pC[i] = Production.getProductionCapacity();
             System.out.println("Produktionskapazität:"             +  f.format(produc.calculateProductCapacity())+"\t");
 
-            mp[i] = marketPrice.getMarketPrice();
+            map[i] = marketPrice.getMarketPrice();
             System.out.println("Marktpreis:             "          +  f.format(marketPrice.calcMarketPrice())+"\t \n");
 
         }
 
-        setMarktPreis(mp);
+        setMarketPrice(map);
         setProduktionsKapazität(pC);
         setProfit(prof);
     }
@@ -91,16 +91,24 @@ public class Simulation
         return produktionsKapazität;
     }
 
-    private void setMarktPreis(Double[] marktPreis) {
-        this.marktPreis = marktPreis;
+    public Double[] getMarketPrice() {
+        return marketPrice;
     }
 
-
+    public Double getMarketPrice(int i)
+    {
+        return marketPrice[i];
+    }
     private void setProfit(Double[] profit) {
         this.profit = profit;
     }
 
     private void setProduktionsKapazität(Double[] produktionsKapazität) {
         this.produktionsKapazität = produktionsKapazität;
+    }
+
+
+    public void setMarketPrice(Double[] marketPrice) {
+        this.marketPrice = marketPrice;
     }
 }

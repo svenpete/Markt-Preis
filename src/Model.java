@@ -8,8 +8,8 @@ import javafx.stage.Stage;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 
-public class Model extends Application
-{
+public class Model
+{ /*
     public static void main (String[] args) {
         Controller c = new Controller();
 
@@ -21,8 +21,7 @@ public class Model extends Application
     @Override
     public void start(Stage stage) throws Exception
     {
-        Controller c = new Controller();
-        // FXML Datei laden
+
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("GUI.fxml"));
         Parent root = loader.load();
@@ -54,4 +53,5 @@ public class Model extends Application
         stage.setScene(scene);
         stage.show();
     }
+ */
 }
