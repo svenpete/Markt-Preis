@@ -1,3 +1,5 @@
+package simulation;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
@@ -10,10 +12,6 @@ public class main extends Application
     public static void main(String [] args)
     {
         launch(args);
-
-
-
-
     }
 
     @Override
@@ -38,16 +36,21 @@ public class main extends Application
             lineChart.setTitle("Preis");
 
             //defining a series
-            XYChart.Series series = new XYChart.Series();
-            series.setName("My portfolio");
+            XYChart.Series seriesMar= new XYChart.Series();
+            XYChart.Series seriesPro = new XYChart.Series();
+            seriesMar.setName("Marketprice");
+            seriesPro.setName("Profit");
 
             //populating the series with data
             for (int i = 1; i < 400; i++) {
                 double y = simulation.getMarketPrice(i);
-                series.getData().add(new XYChart.Data(i, y));
+                double y2 = simulation.getProfit(i);
+                seriesMar.getData().add(new XYChart.Data(i, y));
+                seriesPro.getData().add(new XYChart.Data(i,y2));
             }
             Scene scene  = new Scene(lineChart,800,600);
-            lineChart.getData().add(series);
+            //lineChart.getData().add(seriesMar);
+            lineChart.getData().add(seriesPro);
 
             stage.setScene(scene);
             stage.show();

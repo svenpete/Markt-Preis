@@ -1,8 +1,10 @@
+package simulation;
+
 public class Employees
 {
     private     final   int         rationalisationFactor = 1;                //Rationalisierungsfaktor [1]
 
-    private     double              employmentEffect      = 0.001  ;      //Beschäftigungseffekt [Person/(Stück/Year)]
+    private     double              employmentEffect      = 0.001 * 0.05 ;      //Beschäftigungseffekt [Person/(Stück/Year)]
     private     double              employees;                                   //Beschäftigte (SPEICHERN???)
 
     private     Production          production;

@@ -1,3 +1,5 @@
+package simulation;
+
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 
@@ -99,6 +101,12 @@ public class Simulation
     {
         return marketPrice[i];
     }
+
+    public Double getProfit(int i)
+    {
+        return profit[i];
+    }
+
     private void setProfit(Double[] profit) {
         this.profit = profit;
     }

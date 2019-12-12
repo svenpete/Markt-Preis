@@ -1,3 +1,5 @@
+package simulation;
+
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 
