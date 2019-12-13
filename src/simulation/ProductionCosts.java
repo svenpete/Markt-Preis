@@ -31,7 +31,7 @@ public class ProductionCosts extends Costs
     {
 
         setCosts(((getLabourcost().getCosts() + getCapitalcost().getCosts()
-                + getMaterialcost().getCosts()) * (1 + getProfitMargin())) * 0.05);
+                + getMaterialcost().getCosts()) * (1 + getProfitMargin())) );
 
         /*
         DecimalFormatSymbols symbols     = DecimalFormatSymbols.getInstance();

@@ -2,8 +2,8 @@ package simulation;
 
 public class MarketPrice
 {
-    private             double             demand                  = (500000 * 0.05);    //Nachfrage [Stück/Year]
-    private     final   double          reactionRate            = (0.5 * 0.05);       //Reaktionsrate [1/Year]
+    private             double             demand                  = 500000 ;    //Nachfrage [Stück/Year]
+    private     final   double          reactionRate            = 0.5 ;       //Reaktionsrate [1/Year]
     private             double          marketPrice             = 100;       // Vorerst vorgeben zum Testen spätere Implementierung des Marktpreises;
 
 
@@ -27,16 +27,16 @@ public class MarketPrice
     public double calcInvestReaction()
     {
         if(getBenefitMarge() > 0.1) {
-            setInvestReaction( 1 * 0.05);
+            setInvestReaction( 1 * 0.0625);
         }
         else if (getBenefitMarge() < -0.1)
         {
-            setInvestReaction(- 1 * 0.05);
+            setInvestReaction( -1 * 0.0625);
         }
         else {
-            setInvestReaction(getBenefitMarge() * 0.05) ;
+            setInvestReaction( (getBenefitMarge() * 0.0625) ) ;
         }
-        return (int) getInvestReaction();
+        return  getInvestReaction();
     }
 
     /** calculating benefit marge
@@ -135,7 +135,7 @@ public class MarketPrice
     //Berechnung Marktpreis
     public double calcMarketPrice()
     {
-        setMarketPrice((getMarketPrice() +  (getPricePressureDemand() + getPricePressureCosts())));
+        setMarketPrice((getMarketPrice() +  ((getPricePressureDemand() + getPricePressureCosts() ))* 0.0625));
 
         return getMarketPrice();
     }

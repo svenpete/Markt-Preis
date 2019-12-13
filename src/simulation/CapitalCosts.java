@@ -2,8 +2,8 @@ package simulation;
 
 public class CapitalCosts extends Costs
 {
-    private final double    depreciationRate            = 0.1 * 0.05;    //Abschreibungssatz [1/Year]
-    private final double       specificCapitalRequirement  = 1 * 0.05;      //spezifischer Kapitalbedarf [€/(Stück/Year)]
+    private final double    depreciationRate            = 0.1 ;    //Abschreibungssatz [1/Year]
+    private final double       specificCapitalRequirement  = 1 ;      //spezifischer Kapitalbedarf [€/(Stück/Year)]
 
     private Production production;  // vl ÄNDERN
 
@@ -24,7 +24,7 @@ public class CapitalCosts extends Costs
     public double calculateCosts()
     {
         setCosts((getDepreciationRate() * getProduction().getProductionCapacity()
-                                                * getSpecificCapitalRequirement()) * 0.05);
+                                                * getSpecificCapitalRequirement()) );
 
         return getCosts();
     }

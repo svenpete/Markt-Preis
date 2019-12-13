@@ -21,7 +21,7 @@ public class Simulation
 
 
 
-        DecimalFormat f                 =   new DecimalFormat("###,##0.00", symbols);
+        DecimalFormat f                 =   new DecimalFormat("###,##0.0000", symbols);
 
         Production      produc          =   new Production();
         Employees       employe         =   new Employees(produc);
@@ -98,6 +98,11 @@ public class Simulation
     }
 
     public Double getMarketPrice(int i)
+    {
+        return marketPrice[i];
+    }
+
+    public Double getProduktionsKapazität(int i)
     {
         return marketPrice[i];
     }

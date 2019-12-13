@@ -25,7 +25,7 @@ public class main extends Application
             final NumberAxis yAxis = new NumberAxis();
 
             Simulation simulation = new Simulation();
-            simulation.simulate(1,400,1);
+            simulation.simulate(1,320,1);
 
             xAxis.setLabel("Preis und Markt");
 
@@ -38,19 +38,28 @@ public class main extends Application
             //defining a series
             XYChart.Series seriesMar= new XYChart.Series();
             XYChart.Series seriesPro = new XYChart.Series();
+            XYChart.Series seriesProfit = new XYChart.Series();
+
             seriesMar.setName("Marketprice");
-            seriesPro.setName("Profit");
+            seriesProfit.setName("Profit");
+            seriesPro.setName("ProductionCapacity");
 
             //populating the series with data
-            for (int i = 1; i < 400; i++) {
+            for (int i = 1; i < 320; i++) {
                 double y = simulation.getMarketPrice(i);
                 double y2 = simulation.getProfit(i);
-                seriesMar.getData().add(new XYChart.Data(i, y));
-                seriesPro.getData().add(new XYChart.Data(i,y2));
+                double y3 = simulation.getProduktionsKapazität(i);
+                //seriesMar.getData().add(new XYChart.Data(i, y));
+                //seriesProfit.getData().add(new XYChart.Data(i,y2));
+                seriesPro.getData().add(new XYChart.Data(i,y3));
             }
+
+            lineChart.getData().addAll(seriesMar,seriesPro);
             Scene scene  = new Scene(lineChart,800,600);
-            //lineChart.getData().add(seriesMar);
-            lineChart.getData().add(seriesPro);
+
+
+
+            //lineChart.getData().add(seriesProfit);
 
             stage.setScene(scene);
             stage.show();

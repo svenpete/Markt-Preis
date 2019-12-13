@@ -2,9 +2,9 @@ package simulation;
 
 public class LabourCosts extends Costs {
 
-    private  double wageRate              = 40000 * 0.05;  //Lohnsatz [€/(Person*Year)]
+    private  double wageRate              = 40000 ;  //Lohnsatz [€/(Person*Year)]
 
-    private  double incidentalExpenseRate = 30000 * 0.05;  //Nebenkostensatz [€/(Person*Year)]
+    private  double incidentalExpenseRate = 30000 ;  //Nebenkostensatz [€/(Person*Year)]
 
     private Employees employe;
 

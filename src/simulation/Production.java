@@ -26,7 +26,7 @@ public class Production
 
     public double calculateProductCapacity()
     {
-        setProductionCapacity( (getProductionCapacity() + getCapacityChange()) );
+        setProductionCapacity( (getProductionCapacity() + getCapacityChange())  );
         return  getProductionCapacity();
     }
 

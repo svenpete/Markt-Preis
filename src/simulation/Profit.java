@@ -24,7 +24,7 @@ public class Profit extends Costs //INTERFACE???????????????
     {
 
         setProfit( (getProfitMargin() * getProductionCost().getCosts()
-                                     / ( 1 + getProfitMargin()))  * 0.05);
+                                     / ( 1 + getProfitMargin()))  );
 
         /* //     show stop by step calculation
 
