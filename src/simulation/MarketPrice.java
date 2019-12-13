@@ -2,9 +2,9 @@ package simulation;
 
 public class MarketPrice
 {
-    private             double             demand                  = 500000 ;    //Nachfrage [Stück/Year]
-    private     final   double          reactionRate            = 0.5 ;       //Reaktionsrate [1/Year]
-    private             double          marketPrice             = 100;       // Vorerst vorgeben zum Testen spätere Implementierung des Marktpreises;
+    private             double          demand;    //Nachfrage [Stück/Year]
+    private     final   double          reactionRate;       //Reaktionsrate [1/Year]
+    private             double          marketPrice;       // Vorerst vorgeben zum Testen spätere Implementierung des Marktpreises;
 
 
     private             double          benefitMarge;                       //Gewinnmarge
@@ -13,30 +13,33 @@ public class MarketPrice
 
     private             double          pricePressureDemand;              //Preisdruck Nachfrage
     private             double          mismatchDemand;                  //Fehlanpassung Nachfrage
-    public static       double          investReaction;
+    public        double          investReaction;
 
-    private             UnitCosts       unitCosts;             //Asso
+    private UnitCost unitCosts;             //Asso
 
 
-    public MarketPrice(UnitCosts unitCosts)
+    public MarketPrice(UnitCost unitCosts)
     {
-        setUnitCosts(unitCosts);
+        demand                  = 500000 ;
+        reactionRate            = 0.5 ;
+        marketPrice             = 100;
+        this.unitCosts = unitCosts;
     }
 
 
     public double calcInvestReaction()
     {
-        if(getBenefitMarge() > 0.1) {
-            setInvestReaction( 1 * 0.0625);
+        if(benefitMarge > 0.1) {
+             investReaction = (1 * 0.0625);
         }
-        else if (getBenefitMarge() < -0.1)
+        else if (benefitMarge < -0.1)
         {
-            setInvestReaction( -1 * 0.0625);
+            investReaction= ( -1 * 0.0625);
         }
         else {
-            setInvestReaction( (getBenefitMarge() * 0.0625) ) ;
+            investReaction = (benefitMarge * 0.0625) ;
         }
-        return  getInvestReaction();
+        return  investReaction;
     }
 
     /** calculating benefit marge
@@ -47,9 +50,9 @@ public class MarketPrice
      */
     public double calcBenefitMarge()
     {
-        setBenefitMarge((getMarketPrice() / getUnitCosts().getCosts()) - 1);
+        benefitMarge =(marketPrice / unitCosts.getCosts()) - 1;
 
-        return getBenefitMarge();
+        return benefitMarge;
     }
 
     /**     Berechnung Fehlanpassung Nachfrage
@@ -60,25 +63,23 @@ public class MarketPrice
      * @return mismatchDemand is a factor which is greater than  x > 0
      */
 
-    public double calcMismatchDemand()
+    public double calcMismatchDemand(Double capac)
     {
-        if (getDemand() == 0)
+        if (capac > 0)
         {
-            return -1;
-        }
+            mismatchDemand = (  demand / capac) - 1;
 
-        if (Production.getProductionCapacity() > 0)
+            return mismatchDemand;
+        }
+        else if (demand == 0)
         {
-            setMismatchDemand((  getDemand() / Production.getProductionCapacity()) - 1);
-
-            return getMismatchDemand();
+            mismatchDemand = -1;
+            return mismatchDemand;
         }
-        else
-        {
-            System.out.println("ERROR: PRODUCTION CAPACITY IS LESS THAN ZERO");
-            return 1;
+        else {
+            mismatchDemand = 1 ;
+            return mismatchDemand;
         }
-
 
     }
 
@@ -93,8 +94,8 @@ public class MarketPrice
         try
         {
 
-            setPricePressureDemand(getMismatchDemand() * getMarketPrice() * getReactionRate() );
-            return getPricePressureDemand();
+            pricePressureDemand =(mismatchDemand * marketPrice * reactionRate );
+            return pricePressureDemand;
         }
         catch (NullPointerException e)
         {
@@ -114,17 +115,17 @@ public class MarketPrice
     public double calcMismatchCost()
     {
 
-        setMismatchPrice(   ( getUnitCosts().getCosts() / getMarketPrice() )    -    1);
+        mismatchPrice =   ( unitCosts.getCosts() / marketPrice )    -    1;
 
-        return getMismatchPrice();
+        return mismatchPrice;
     }
 
 
     //Berechnung Preisdruck
     public double calcPricePressureCosts()
     {
-        setPricePressureCosts(getMismatchPrice() * getMarketPrice() * getReactionRate());
-        return getPricePressureCosts();
+        pricePressureCosts = (mismatchPrice * marketPrice * reactionRate);
+        return pricePressureCosts;
     }
 
     /** calculate market price
@@ -135,9 +136,9 @@ public class MarketPrice
     //Berechnung Marktpreis
     public double calcMarketPrice()
     {
-        setMarketPrice((getMarketPrice() +  ((getPricePressureDemand() + getPricePressureCosts() ))* 0.0625));
+        marketPrice =  marketPrice +  ((pricePressureDemand + pricePressureCosts)* 0.0625);
 
-        return getMarketPrice();
+        return marketPrice;
     }
 
 
@@ -202,11 +203,11 @@ public class MarketPrice
         this.mismatchDemand = mismatchDemand;
     }
 
-    public UnitCosts getUnitCosts() {
+    public UnitCost getUnitCosts() {
         return unitCosts;
     }
 
-    public void setUnitCosts(UnitCosts unitCosts) {
+    public void setUnitCosts(UnitCost unitCosts) {
         this.unitCosts = unitCosts;
     }
 

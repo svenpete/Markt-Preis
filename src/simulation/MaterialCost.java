@@ -1,15 +1,16 @@
 package simulation;
 
-public class MaterialCosts extends Costs
+public class MaterialCost extends Cost
 {
 
-    private final double materialCost = 100 ;    //Materialkostensatz [€/Stück] 100 Basis
+    private final double materialCost;   //Materialkostensatz [€/Stück] 100 Basis
 
     private Production production;
 
-    public MaterialCosts(Production production)
+    public MaterialCost(Production production)
     {
-        setProduction(production);
+        this.production = production;
+        materialCost = 100 ;
     }
 
 
@@ -21,8 +22,8 @@ public class MaterialCosts extends Costs
     @Override
     public double calculateCosts()
     {
-        setCosts(   (getMaterialCost() * Production.getProductionCapacity())       );
-        return getCosts();
+        costs =  (materialCost * production.getProductionCapacity())   ;
+        return costs;
     }
 
 

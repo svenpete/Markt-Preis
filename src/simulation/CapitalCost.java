@@ -1,15 +1,17 @@
 package simulation;
 
-public class CapitalCosts extends Costs
+public class CapitalCost extends Cost
 {
-    private final double    depreciationRate            = 0.1 ;    //Abschreibungssatz [1/Year]
-    private final double       specificCapitalRequirement  = 1 ;      //spezifischer Kapitalbedarf [€/(Stück/Year)]
+    private final double    depreciationRate;    //Abschreibungssatz [1/Year]
+    private final double       specificCapitalRequirement;     //spezifischer Kapitalbedarf [€/(Stück/Year)]
+    private double [] results ;
 
     private Production production;  // vl ÄNDERN
 
-    public CapitalCosts(Production produc)
+    public CapitalCost(Production produc)
     {
-
+        depreciationRate = 0.1;
+        specificCapitalRequirement  = 1 ;
         setProduction(produc);
 
     }
@@ -23,10 +25,10 @@ public class CapitalCosts extends Costs
     @Override
     public double calculateCosts()
     {
-        setCosts((getDepreciationRate() * getProduction().getProductionCapacity()
-                                                * getSpecificCapitalRequirement()) );
+        costs =((depreciationRate * production.getProductionCapacity()
+                                                * specificCapitalRequirement) );
 
-        return getCosts();
+        return costs;
     }
 
 

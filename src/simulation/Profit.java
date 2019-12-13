@@ -1,17 +1,17 @@
 package simulation;
 
-public class Profit extends Costs //INTERFACE???????????????
+public class Profit extends Cost
 {
-    private final double profitMargin = 0.05;   //Profitmarge [1]
-    private ProductionCosts productionCost;
+    private final double profitMargin;
     private double profit;
+    private ProductionCost productionCosts;
 
 
-    Profit (ProductionCosts productionCosts)
+    Profit (ProductionCost productionCosts)
     {
-        setProductionCost(productionCosts);
+        this.productionCosts = productionCosts;
+        profitMargin = 0.05;  // Parameter simulation 0.05 standard
     }
-
 
 
     /**
@@ -23,8 +23,8 @@ public class Profit extends Costs //INTERFACE???????????????
     public double calculateCosts()
     {
 
-        setProfit( (getProfitMargin() * getProductionCost().getCosts()
-                                     / ( 1 + getProfitMargin()))  );
+        profit = ( profitMargin * productionCosts.getCosts()
+                                / ( 1 + profitMargin) );
 
         /* //     show stop by step calculation
 
@@ -41,18 +41,10 @@ public class Profit extends Costs //INTERFACE???????????????
                 "/" + f.format( 1  + getProfitMargin()));
         */
 
-        return getProfit();
+        return profit;
     }
 
 
-    public void setProductionCost(ProductionCosts productionCost)
-    {
-        this.productionCost = productionCost;
-    }
-
-    public void setProfit(double profit) {
-        this.profit = profit;
-    }
 
     public double getProfit() {
         return profit;
@@ -62,7 +54,17 @@ public class Profit extends Costs //INTERFACE???????????????
         return profitMargin;
     }
 
-    public ProductionCosts getProductionCost() {
-        return productionCost;
+    public ProductionCost getProductionCost() {
+        return productionCosts;
+    }
+
+
+    public void setProductionCost(ProductionCost productionCost)
+    {
+        this.productionCosts = productionCost;
+    }
+
+    public void setProfit(double profit) {
+        this.profit = profit;
     }
 }

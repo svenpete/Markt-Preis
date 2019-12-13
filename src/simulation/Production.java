@@ -2,58 +2,49 @@ package simulation;
 
 public class Production
 {
-    private static Double productionCapacity = 100000.00 ; // Klasse für simulation
-
-
-
-    private double capacityChange; //Kapazitätsveränderung
-
+    private Double productionCapacity;
+    private Double capacityChange;
 
     Production()
     {
-
+        productionCapacity = 100000.00;
     }
 
-    public double calculateCapacityChange()
+    public Double calculateCapacityChange(Double investReaction)
     {
-        setCapacityChange(MarketPrice.investReaction * getProductionCapacity());
+        capacityChange = investReaction * productionCapacity;
 
-        return getCapacityChange();
+        return capacityChange;
     }
 
 
-
-
-    public double calculateProductCapacity()
+    public Double calculateProductCapacity()
     {
-        setProductionCapacity( (getProductionCapacity() + getCapacityChange())  );
-        return  getProductionCapacity();
+        productionCapacity = productionCapacity + capacityChange;
+
+        return  productionCapacity;
     }
 
 
-
-
-
-    public double getCapacityChange()
+    public Double getCapacityChange()
     {
         return capacityChange;
     }
 
-    public static Double getProductionCapacity()
+    public Double getProductionCapacity()
     {
         return productionCapacity;
     }
 
 
 
-
-    public void setCapacityChange(double capacityChange)
+    public void setCapacityChange(Double capacityChange)
     {
         this.capacityChange = capacityChange;
     }
 
     public void setProductionCapacity(Double productionCapacity)
     {
-        Production.productionCapacity = productionCapacity;
+        this.productionCapacity = productionCapacity;
     }
 }

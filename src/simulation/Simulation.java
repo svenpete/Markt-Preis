@@ -8,6 +8,10 @@ public class Simulation
     private Double [] marketPrice;
     private Double [] profit;
     private Double [] produktionsKapazität;
+    /*private Double [] employee;
+    private Double [] profit;
+    private Double [] produktionsKapazität;
+    */
 
     public Simulation()
     {
@@ -16,31 +20,28 @@ public class Simulation
 
     public void simulate(Integer initalTime, Integer finalTime, Integer finalStep)
     {
+
         DecimalFormatSymbols symbols = DecimalFormatSymbols.getInstance();
         symbols.setGroupingSeparator('.');
-
-
-
         DecimalFormat f                 =   new DecimalFormat("###,##0.0000", symbols);
 
+
         Production      produc          =   new Production();
-        Employees       employe         =   new Employees(produc);
+        Employee employe         =   new Employee(produc);
 
-        LabourCosts     laCost          =   new LabourCosts(employe);
-        CapitalCosts    caCost          =   new CapitalCosts(produc);
-        MaterialCosts   maCost          =   new MaterialCosts(produc);
+        LabourCost laCost          =   new LabourCost(employe);
+        CapitalCost caCost          =   new CapitalCost(produc);
+        MaterialCost maCost          =   new MaterialCost(produc);
 
-        ProductionCosts proCost         =   new ProductionCosts(caCost,maCost,laCost);
+        ProductionCost proCost         =   new ProductionCost(caCost,maCost,laCost);
         Profit          profit          =   new Profit(proCost);
-        UnitCosts       unCost          =   new UnitCosts(proCost);
+        UnitCost unCost          =   new UnitCost(proCost);
 
         MarketPrice     marketPrice     =   new MarketPrice(unCost);
 
-
-
-
+        // safe
         Double [] map = new Double[finalTime];
-        Double [] pC = new Double[finalTime];
+        Double [] producCap = new Double[finalTime];
         Double [] prof= new Double[finalTime];
 
         for (int i = initalTime; i < finalTime ; i = i + finalStep)
@@ -60,19 +61,19 @@ public class Simulation
             System.out.println("Profit:                 "         +   f.format(profit.calculateCosts()    )+"\t");
 
 
-            System.out.println("Stückkosten:            "         +   f.format( (unCost.calculateCosts()   ))+"\n");
+            System.out.println("Stückkosten:            "         +   f.format( (unCost.calculateCosts(produc.getProductionCapacity())   ))+"\n");
 
             System.out.println("GewinnMarge:            "         +   f.format(marketPrice.calcBenefitMarge())+"\t");
 
-            System.out.println("Fehlanpassung Nachfrage:"         +   f.format(marketPrice.calcMismatchDemand())+"\t");
+            System.out.println("Fehlanpassung Nachfrage:"         +   f.format(marketPrice.calcMismatchDemand(produc.getProductionCapacity()))+"\t");
             System.out.println("Preisdruck Nachfrage:   "         +   f.format(marketPrice.calcPricePressureDemand())+"\t");
             System.out.println("Fehlanpassung Preis:    "         +   f.format(marketPrice.calcMismatchCost())+"\t");
             System.out.println("Preisdruckkosten:       "         +   f.format(marketPrice.calcPricePressureCosts())+"\t");
 
             System.out.println("Investreaktio: "                   +  f.format(marketPrice.calcInvestReaction())+"\t");
-            System.out.println("Kapazitätsveränderung: "           +  f.format(produc.calculateCapacityChange())+"\t");
+            System.out.println("Kapazitätsveränderung: "           +  f.format(produc.calculateCapacityChange(marketPrice.getInvestReaction()))+"\t");
 
-            pC[i] = Production.getProductionCapacity();
+            producCap[i] = produc.getProductionCapacity();
             System.out.println("Produktionskapazität:"             +  f.format(produc.calculateProductCapacity())+"\t");
 
             map[i] = marketPrice.getMarketPrice();
@@ -81,7 +82,7 @@ public class Simulation
         }
 
         setMarketPrice(map);
-        setProduktionsKapazität(pC);
+        setProduktionsKapazität(producCap);
         setProfit(prof);
     }
 
