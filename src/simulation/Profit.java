@@ -7,10 +7,10 @@ public class Profit extends Cost
     private ProductionCost productionCosts;
 
 
-    Profit (ProductionCost productionCosts)
+    Profit (Double profitMargin, ProductionCost productionCosts)
     {
         this.productionCosts = productionCosts;
-        profitMargin = 0.05;  // Parameter simulation 0.05 standard
+        this.profitMargin = profitMargin;  // Parameter simulation 0.05 standard
     }
 
 

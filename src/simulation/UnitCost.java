@@ -1,16 +1,40 @@
 package simulation;
 
+import java.util.ArrayList;
+
 public class UnitCost extends Cost
 {
 
     private final double taxRate;    //Steuersatz [1]
+    private double benefitMarge;
+    private double investReaction;
+
+
 
     private ProductionCost productionCosts;
+    private Production production;
 
-    public UnitCost(ProductionCost productionCosts)
+    public UnitCost(double taxRate, ProductionCost productionCosts, Production production)
     {
-         taxRate = 0.2;
+
+         this.taxRate = taxRate;
          this.productionCosts = productionCosts;
+         this.production = production;
+
+
+    }
+
+    /** calculating benefit marge
+     *  BenefitMarge [ DYNAMIK ] ||  UnitCost [ DYNAMIK ]
+     *  MarketPrice > UnitCost
+     *
+     * @return Double between
+     */
+    public double calcBenefitMarge(Double marketPrice)
+    {
+        benefitMarge =(marketPrice / costs) - 1;
+
+        return benefitMarge;
     }
 
 
@@ -21,19 +45,50 @@ public class UnitCost extends Cost
      * @return super.costs as double
      */
 
-
-    public double calculateCosts(Double capac)
+    @Override
+    public double calculateCosts()
     {
 
         costs = ( productionCosts.getCosts() /
-                 capac )* (1 + taxRate);
+                 production.getProductionCapacity() )* (1 + taxRate);
 
         System.out.println( "Stückkosten (NO TAXES): "+    productionCosts.getCosts() /
-                                capac );
+                                production.getProductionCapacity() );
 
         return costs;
     }
 
+
+
+    public double calcInvestReaction()
+    {
+        if(benefitMarge > 0.1) {
+            investReaction = 1 ;
+        }
+        else if (benefitMarge < -0.1)
+        {
+            investReaction= -1 ;
+        }
+        else {
+            investReaction = benefitMarge  ;
+        }
+        return  investReaction;
+    }
+
+    public double calcInvestReactionI()  // SIMULATION GROß
+    {
+        if(benefitMarge > 0.1) {
+            investReaction = 0.2;
+        }
+        else if (benefitMarge < -0.1)
+        {
+            investReaction= -0.2 ;
+        }
+        else {
+            investReaction = benefitMarge * 2 ;
+        }
+        return  investReaction;
+    }
 
     public double getTaxRate()
     {
@@ -45,6 +100,14 @@ public class UnitCost extends Cost
         return productionCosts;
     }
 
+    public double getBenefitMarge() {
+        return benefitMarge;
+    }
+
+    public double getInvestReaction() {
+        return investReaction;
+    }
+
 
     public void setProductionCosts(ProductionCost productionCosts)
     {
@@ -52,8 +115,4 @@ public class UnitCost extends Cost
     }
 
 
-    @Override
-    public double calculateCosts() {
-        return 0;
-    }
 }

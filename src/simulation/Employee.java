@@ -2,18 +2,18 @@ package simulation;
 
 public class Employee
 {
-    private     final   int         rationalisationFactor;                //Rationalisierungsfaktor [1]
+    private     final   double         rationalisationFactor;                //Rationalisierungsfaktor [1]
 
     private     double              employmentEffect;      //Beschäftigungseffekt [Person/(Stück/Year)]
     private     double              employees;                                   //Beschäftigte (SPEICHERN???)
 
     private     Production          production;
 
-    public Employee(Production production)
+    public Employee(Double rationalisationFactor,Double employmentEffect, Production production)
     {
         this.production = production;
-        rationalisationFactor = 1;
-        employmentEffect      = 0.001;
+        this.rationalisationFactor = rationalisationFactor;  // 1
+        this.employmentEffect      = employmentEffect;   //0.001
     }
 
     /**
@@ -50,7 +50,7 @@ public class Employee
         return production;
     }
 
-    public int getRationalisationFactor()
+    public double getRationalisationFactor()
     {
         return rationalisationFactor;
     }

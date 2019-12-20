@@ -7,10 +7,10 @@ public class MaterialCost extends Cost
 
     private Production production;
 
-    public MaterialCost(Production production)
+    public MaterialCost(Double materialCost, Production production)
     {
         this.production = production;
-        materialCost = 100 ;
+        this.materialCost = materialCost ;
     }
 
 

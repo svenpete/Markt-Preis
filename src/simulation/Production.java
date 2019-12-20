@@ -1,13 +1,19 @@
 package simulation;
 
+import java.util.ArrayList;
+import java.util.zip.DeflaterOutputStream;
+
 public class Production
 {
     private Double productionCapacity;
     private Double capacityChange;
+    private static double sumProductionCapacity;
 
-    Production()
+
+    Production(Double productionCapacity)
     {
-        productionCapacity = 100000.00;
+        this.productionCapacity = productionCapacity;
+        sumProductionCapacity = 0;
     }
 
     public Double calculateCapacityChange(Double investReaction)
@@ -20,10 +26,19 @@ public class Production
 
     public Double calculateProductCapacity()
     {
-        productionCapacity = productionCapacity + capacityChange;
+        productionCapacity = productionCapacity + (capacityChange * 0.0625);
+
+
 
         return  productionCapacity;
     }
+
+    public static Double calcSumProductionCapacity(Double productionCapacityA, Double productionCapacityB)
+    {
+       sumProductionCapacity = productionCapacityA + productionCapacityB;
+
+        return sumProductionCapacity;
+     }
 
 
     public Double getCapacityChange()
@@ -36,7 +51,9 @@ public class Production
         return productionCapacity;
     }
 
-
+    public static double getSumProductionCapacity() {
+        return sumProductionCapacity;
+    }
 
     public void setCapacityChange(Double capacityChange)
     {

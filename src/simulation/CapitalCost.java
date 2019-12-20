@@ -4,15 +4,15 @@ public class CapitalCost extends Cost
 {
     private final double    depreciationRate;    //Abschreibungssatz [1/Year]
     private final double       specificCapitalRequirement;     //spezifischer Kapitalbedarf [€/(Stück/Year)]
-    private double [] results ;
+
 
     private Production production;  // vl ÄNDERN
 
-    public CapitalCost(Production produc)
+    public CapitalCost(Double depreciationRate, Double specificCapitalRequirement, Production production)
     {
-        depreciationRate = 0.1;
-        specificCapitalRequirement  = 1 ;
-        setProduction(produc);
+        this.depreciationRate = depreciationRate;
+        this.specificCapitalRequirement  = specificCapitalRequirement ;
+        this.production = production;
 
     }
 

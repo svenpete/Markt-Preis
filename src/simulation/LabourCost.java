@@ -4,16 +4,16 @@ public class LabourCost extends Cost {
 
     private  double wageRate;  //Lohnsatz [€/(Person*Year)]
 
-    private  double incidentalExpenseRate = 30000 ;  //Nebenkostensatz [€/(Person*Year)]
+    private  double incidentalExpenseRate;  //Nebenkostensatz [€/(Person*Year)]
 
     private Employee employe;
 
 
-    public LabourCost(Employee employe)
+    public LabourCost(Double wageRate, Double incidentalExpenseRate, Employee employee)
     {
-        this.employe          = employe;
-        wageRate              = 40000 ;
-        incidentalExpenseRate = 30000 ;
+        this.employe               = employee;
+        this.wageRate              = wageRate ;
+        this.incidentalExpenseRate = incidentalExpenseRate ;
 
     }
 
