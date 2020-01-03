@@ -3,11 +3,11 @@ package simulation;
 public abstract class Cost
 {
 
-    protected double costs;
+    protected double cost;
 
-    public abstract double calculateCosts();    //Methode zur Berechnung der einzelnen Kosten
+    public abstract double calculateCosts();
 
-    public double getCosts() {
-        return costs;
+    public double getCost() {
+        return cost;
     }
 }

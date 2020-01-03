@@ -2,9 +2,9 @@ package simulation;
 
 public class LabourCost extends Cost {
 
-    private  double wageRate;  //Lohnsatz [€/(Person*Year)]
+    private  double wageRate;
 
-    private  double incidentalExpenseRate;  //Nebenkostensatz [€/(Person*Year)]
+    private  double incidentalExpenseRate;
 
     private Employee employe;
 
@@ -17,20 +17,14 @@ public class LabourCost extends Cost {
 
     }
 
-    /**
-     *  calculate labour cost [Cost/Year]
-     *  Year is [ 1 ]
-     *  WageRate is fix || ExpenseRate is fix
-     *  DYNAMIK EMPLOYEE || Auswirkung Produktkapazität
-     * @return Labourcost || costs for 1 year of work
-     */
+
 
     @Override
     public double calculateCosts()
     {
-         costs = ( wageRate + incidentalExpenseRate ) * employe.getEmployees();
+         cost = ( wageRate + incidentalExpenseRate ) * employe.getEmployees();
 
-        return costs;
+        return cost;
     }
 
     public double getWageRate()
@@ -43,23 +37,4 @@ public class LabourCost extends Cost {
         return incidentalExpenseRate;
     }
 
-    public Employee getEmploye()
-    {
-        return employe;
-    }
-
-    public void setEmploye(Employee employe)
-    {
-        this.employe = employe;
-    }
-
-    public void setWageRate(double wageRate)
-    {
-        this.wageRate = wageRate;
-    }
-
-    public void setIncidentalExpenseRate(double incidentalExpenseRate)
-    {
-        this.incidentalExpenseRate = incidentalExpenseRate;
-    }
 }

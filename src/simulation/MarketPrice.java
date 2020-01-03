@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class MarketPrice
 {
-    private             double          demand;    //Nachfrage [Stück/Year]
-    private     final   double          reactionRate;       //Reaktionsrate [1/Year]
-    private     static         double          marketPrice;       // for unitcot access
+    private     final         double DEMAND;
+    private     final   double REACTIONRATE;
+    private              double          marketPrice;       // for unitcot access
 
 
 
@@ -20,22 +20,21 @@ public class MarketPrice
     private             double          costAdjustment;
 
 
-
     private ArrayList<UnitCost> unitCosts;
 
 
 
-    public MarketPrice(Double demand, Double reactionRate, Double marketPrice, ArrayList<UnitCost> unitCosts)
+    public MarketPrice(Double DEMAND, Double REACTIONRATE, Double marketPrice, ArrayList<UnitCost> unitCosts)
     {
-        this.demand                  = demand ;
-        this.reactionRate            = reactionRate ;
+        this.DEMAND = DEMAND;
+        this.REACTIONRATE = REACTIONRATE;
         this.marketPrice             = marketPrice;
         this.unitCosts               = unitCosts;
     }
 
 
 
-    // npassungskosten
+    // Anpassungskosten
     public double calcCostAdjustment(Double productionA, Double productionB, Double productionSUM)
     {
         costAdjustment = (-0.5) * (((productionA / productionSUM) * unitCosts.get(0).getBenefitMarge()
@@ -44,8 +43,6 @@ public class MarketPrice
                                                                 / (unitCosts.get(1).getBenefitMarge()+1));
         return costAdjustment;
     }
-
-
 
 
     /**     Berechnung Fehlanpassung Nachfrage
@@ -60,11 +57,11 @@ public class MarketPrice
     {
         if (capacitySUM > 0)
         {
-            mismatchDemand = (  demand / capacitySUM) - 1;
+            mismatchDemand = (  DEMAND / capacitySUM) - 1;
 
             return mismatchDemand;
         }
-        else if (demand == 0)
+        else if (DEMAND == 0)
         {
             mismatchDemand = -1;
             return mismatchDemand;
@@ -87,7 +84,7 @@ public class MarketPrice
         try
         {
 
-            pricePressureDemand =(mismatchDemand * marketPrice * reactionRate );
+            pricePressureDemand =(mismatchDemand * marketPrice * REACTIONRATE);
             return pricePressureDemand;
         }
         catch (NullPointerException e)
@@ -99,16 +96,11 @@ public class MarketPrice
 
     }
 
-    //Berechnung Fehlanpassung Preis
 
-    /** calculating mismatch price
-     *  getUnitCosts / getMarketPrice
-     * @return
-     */
     public double calcMismatchCost()
     {
 
-        mismatchPrice =   ( unitCosts.get(0).getCosts() / marketPrice )    -    1;
+        mismatchPrice =   ( unitCosts.get(0).getCost() / marketPrice )    -    1;
 
         return mismatchPrice;
     }
@@ -117,7 +109,7 @@ public class MarketPrice
     //Berechnung Preisdruck
     public double calcPricePressureCosts(Double costAdjustment)
     {
-        pricePressureCosts = (costAdjustment * marketPrice * reactionRate);
+        pricePressureCosts = (costAdjustment * marketPrice * REACTIONRATE);
         return pricePressureCosts;
     }
 
@@ -143,12 +135,12 @@ public class MarketPrice
         this.marketPrice = marketPrice;
     }
 
-    public double getDemand() {
-        return demand;
+    public double getDEMAND() {
+        return DEMAND;
     }
 
-    public double getReactionRate() {
-        return reactionRate;
+    public double getREACTIONRATE() {
+        return REACTIONRATE;
     }
 
     public double getPricePressureCosts() {

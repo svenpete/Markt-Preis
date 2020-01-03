@@ -2,34 +2,25 @@ package simulation;
 
 public class Employee
 {
-    private     final   double         rationalisationFactor;                //Rationalisierungsfaktor [1]
+    private     final   double RATIONALISATIONFACTOR;
 
-    private     double              employmentEffect;      //Beschäftigungseffekt [Person/(Stück/Year)]
-    private     double              employees;                                   //Beschäftigte (SPEICHERN???)
+    private     double              employmentEffect;
+    private     double              employees;
 
     private     Production          production;
 
-    public Employee(Double rationalisationFactor,Double employmentEffect, Production production)
+    public Employee(Double RATIONALISATIONFACTOR, Double employmentEffect, Production production)
     {
         this.production = production;
-        this.rationalisationFactor = rationalisationFactor;  // 1
-        this.employmentEffect      = employmentEffect;   //0.001
+        this.RATIONALISATIONFACTOR = RATIONALISATIONFACTOR;
+        this.employmentEffect      = employmentEffect;
     }
 
-    /**
-     *  Calculation for Working-Employees to accomplish the Productioncapacity
-     *  employmentEffect represents the needed Employees to accomplish 1 ME
-     *  rationalisationFactor cuts Employees or increases the Employees depending on
-     *  rationalisationFactor = 1 remains untouched
-     *  rationalisationFactor > 1 cuts Employees
-     *  rationalisationFactor < 1 increases Employees
-     * @return employees || depending on given parameters
-     */
 
-    public double computeEmployees()
+    public double calculateEmployees()
     {
 
-        employees = employmentEffect * production.getProductionCapacity() / rationalisationFactor;
+        employees = employmentEffect * production.getProductionCapacity() / RATIONALISATIONFACTOR;
 
         return employees;
     }
@@ -50,15 +41,11 @@ public class Employee
         return production;
     }
 
-    public double getRationalisationFactor()
+    public double getRATIONALISATIONFACTOR()
     {
-        return rationalisationFactor;
+        return RATIONALISATIONFACTOR;
     }
 
-    public void setEmployees(double employees)
-    {
-        this.employees = employees;
-    }
 
     public void setProduction(Production production)
     {

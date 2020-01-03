@@ -1,8 +1,5 @@
 package simulation;
 
-import java.util.ArrayList;
-import java.util.zip.DeflaterOutputStream;
-
 public class Production
 {
     private Double productionCapacity;
@@ -27,8 +24,6 @@ public class Production
     public Double calculateProductCapacity()
     {
         productionCapacity = productionCapacity + (capacityChange * 0.0625);
-
-
 
         return  productionCapacity;
     }
@@ -55,13 +50,4 @@ public class Production
         return sumProductionCapacity;
     }
 
-    public void setCapacityChange(Double capacityChange)
-    {
-        this.capacityChange = capacityChange;
-    }
-
-    public void setProductionCapacity(Double productionCapacity)
-    {
-        this.productionCapacity = productionCapacity;
-    }
 }

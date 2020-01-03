@@ -1,23 +1,19 @@
 package simulation;
 
-import java.util.ArrayList;
-
 public class UnitCost extends Cost
 {
 
-    private final double taxRate;    //Steuersatz [1]
+    private final double TAXRATE;
     private double benefitMarge;
     private double investReaction;
-
-
 
     private ProductionCost productionCosts;
     private Production production;
 
-    public UnitCost(double taxRate, ProductionCost productionCosts, Production production)
+    public UnitCost(double TAXRATE, ProductionCost productionCosts, Production production)
     {
 
-         this.taxRate = taxRate;
+         this.TAXRATE = TAXRATE;
          this.productionCosts = productionCosts;
          this.production = production;
 
@@ -32,12 +28,10 @@ public class UnitCost extends Cost
      */
     public double calcBenefitMarge(Double marketPrice)
     {
-        benefitMarge =(marketPrice / costs) - 1;
+        benefitMarge =(marketPrice / cost) - 1;
 
         return benefitMarge;
     }
-
-
 
     /**
      * calculation for unitCosts
@@ -49,17 +43,16 @@ public class UnitCost extends Cost
     public double calculateCosts()
     {
 
-        costs = ( productionCosts.getCosts() /
-                 production.getProductionCapacity() )* (1 + taxRate);
+        cost = ( productionCosts.getCost() /
+                 production.getProductionCapacity() )* (1 + TAXRATE);
 
-        System.out.println( "Stückkosten (NO TAXES): "+    productionCosts.getCosts() /
-                                production.getProductionCapacity() );
 
-        return costs;
+
+        return cost;
     }
 
 
-
+    // calculate different for simulation with 1 company
     public double calcInvestReaction()
     {
         if(benefitMarge > 0.1) {
@@ -75,7 +68,8 @@ public class UnitCost extends Cost
         return  investReaction;
     }
 
-    public double calcInvestReactionI()  // SIMULATION GROß
+    // calculate different for simulation with 2 company
+    public double calcInvestReactionI()
     {
         if(benefitMarge > 0.1) {
             investReaction = 0.2;
@@ -90,14 +84,9 @@ public class UnitCost extends Cost
         return  investReaction;
     }
 
-    public double getTaxRate()
+    public double getTAXRATE()
     {
-        return taxRate;
-    }
-
-    public ProductionCost getProductionCosts()
-    {
-        return productionCosts;
+        return TAXRATE;
     }
 
     public double getBenefitMarge() {
@@ -107,12 +96,5 @@ public class UnitCost extends Cost
     public double getInvestReaction() {
         return investReaction;
     }
-
-
-    public void setProductionCosts(ProductionCost productionCosts)
-    {
-        this.productionCosts = productionCosts;
-    }
-
 
 }

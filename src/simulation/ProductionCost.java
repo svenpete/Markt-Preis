@@ -3,7 +3,7 @@ package simulation;
 public class ProductionCost extends Cost
 {
 
-    private final double profitMargin;   //Profitmarge [1]
+    private final double PROFITMARGIN;
 
     private CapitalCost capitalCost;
     private MaterialCost materialCost;
@@ -12,7 +12,7 @@ public class ProductionCost extends Cost
      // create references because of missing attributes for calculations
     public ProductionCost(CapitalCost capitalCost, MaterialCost materialCost, LabourCost labourCost)
     {
-        profitMargin = 0.05;
+        PROFITMARGIN = 0.05;
         this.capitalCost = capitalCost;
         this.materialCost = materialCost;
         this.labourCost = labourCost;
@@ -31,56 +31,16 @@ public class ProductionCost extends Cost
     public double calculateCosts()
     {
 
-        costs = (labourCost.getCosts() + capitalCost.getCosts()
-                + materialCost.getCosts()) * (1 + profitMargin) ;
+        cost = (labourCost.getCost() + capitalCost.getCost()
+                + materialCost.getCost()) * (1 + PROFITMARGIN) ;
 
-        /*
-        DecimalFormatSymbols symbols     = DecimalFormatSymbols.getInstance();
-        symbols.setGroupingSeparator('.');
-        DecimalFormat f                  =   new DecimalFormat("###,##0.00", symbols);
-
-        System.out.println("ProfitMarge: SumCost: " + f.format(Labourcost.getCosts() + Capitalcost.getCosts()
-               + Materialcost.getCosts()));
-
-        System.out.println("ProfitMarge: " + f.format((Labourcost.getCosts() + Capitalcost.getCosts()
-                + Materialcost.getCosts()) * profitMargin));
-         */
-
-        return costs;
+        return cost;
     }
 
-    public double getProfitMargin()
+    public double getPROFITMARGIN()
     {
-        return profitMargin;
+        return PROFITMARGIN;
     }
 
-    public void setCapitalCost(CapitalCost capitalCost)
-    {
-        this.capitalCost = capitalCost;
-    }
 
-    public void setLabourCost(LabourCost labourCost)
-    {
-        this.labourCost = labourCost;
-    }
-
-    public void setMaterialCost(MaterialCost materialCost)
-    {
-        this.materialCost = materialCost;
-    }
-
-    public CapitalCost getCapitalCost()
-    {
-        return capitalCost;
-    }
-
-    public LabourCost getLabourCost()
-    {
-        return labourCost;
-    }
-
-    public MaterialCost getMaterialCost()
-    {
-        return materialCost;
-    }
 }

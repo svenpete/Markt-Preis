@@ -2,16 +2,17 @@ package simulation;
 
 public class CapitalCost extends Cost
 {
-    private final double    depreciationRate;    //Abschreibungssatz [1/Year]
-    private final double       specificCapitalRequirement;     //spezifischer Kapitalbedarf [€/(Stück/Year)]
+    private final double DEPRECIATIONRATE;    //Abschreibungssatz
+
+    private final double SPECIFICCAPITALREQUIRMENT;     //spezifischer Kapitalbedarf
 
 
-    private Production production;  // vl ÄNDERN
+    private Production production;
 
-    public CapitalCost(Double depreciationRate, Double specificCapitalRequirement, Production production)
+    public CapitalCost(Double DEPRECIATIONRATE, Double SPECIFICCAPITALREQUIRMENT, Production production)
     {
-        this.depreciationRate = depreciationRate;
-        this.specificCapitalRequirement  = specificCapitalRequirement ;
+        this.DEPRECIATIONRATE = DEPRECIATIONRATE;
+        this.SPECIFICCAPITALREQUIRMENT = SPECIFICCAPITALREQUIRMENT;
         this.production = production;
 
     }
@@ -25,19 +26,19 @@ public class CapitalCost extends Cost
     @Override
     public double calculateCosts()
     {
-        costs =((depreciationRate * production.getProductionCapacity()
-                                                * specificCapitalRequirement) );
+        cost =((DEPRECIATIONRATE * production.getProductionCapacity()
+                                                * SPECIFICCAPITALREQUIRMENT) );
 
-        return costs;
+        return cost;
     }
 
 
-    public double getDepreciationRate() {
-        return depreciationRate;
+    public double getDEPRECIATIONRATE() {
+        return DEPRECIATIONRATE;
     }
 
-    public double getSpecificCapitalRequirement() {
-        return specificCapitalRequirement;
+    public double getSPECIFICCAPITALREQUIRMENT() {
+        return SPECIFICCAPITALREQUIRMENT;
     }
 
     public void setProduction(Production production) {

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SetterController">
+   <children>
+      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="800.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <SplitPane dividerPositions="0.5" layoutX="503.0" layoutY="151.0" prefHeight="395.0" prefWidth="1278.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="270.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <Label alignment="TOP_CENTER" prefHeight="23.0" prefWidth="620.0" text="Company A" underline="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                              <GridPane fx:id="companyA" layoutX="97.0" layoutY="123.0" prefHeight="445.0" prefWidth="884.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="410.0" minWidth="10.0" prefWidth="404.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="472.0" minWidth="10.0" prefWidth="175.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <TextField fx:id="productionA" onKeyPressed="#update" prefHeight="27.0" prefWidth="219.0" promptText="200.000,00" text="200000.00" GridPane.columnIndex="1" />
+                                    <Label text="Productioncapacity" />
+                                    <Label text="Rationalisationfactor" GridPane.rowIndex="1" />
+                                    <Label text="Employmenteffect" GridPane.rowIndex="2" />
+                                    <Label text="Wagerate" GridPane.rowIndex="3" />
+                                    <Label text="Incidentalexpenserate" GridPane.rowIndex="4" />
+                                    <Label text="Depreciationrate" GridPane.rowIndex="5" />
+                                    <Label text="Specificcapitalrequirement" GridPane.rowIndex="6" />
+                                    <Label text="Materialcost" GridPane.rowIndex="7" />
+                                    <Label text="Taxrate" GridPane.rowIndex="8" />
+                                    <TextField fx:id="employeeA0" promptText="1,00" text="1.00" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="employeeA1" promptText="0,0009" text="0.0009" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <TextField fx:id="labourCostA0" prefHeight="27.0" prefWidth="208.0" promptText="40.000,00" text="40000.00" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <TextField fx:id="labourCostA1" promptText="30.000;00" text="30000.00" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <TextField fx:id="capitalCostA0" promptText="0,1" text="0.1" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <TextField fx:id="capitalCostA1" prefHeight="27.0" prefWidth="177.0" promptText="10,00" text="10.00" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                    <TextField fx:id="materialCostA" promptText="100,00" text="100.00" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                    <TextField fx:id="unitCostA" promptText="0,2" text="0.2" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" />
+                                 </padding>
+                              </GridPane>
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="270.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <Label alignment="TOP_CENTER" prefHeight="23.0" prefWidth="620.0" text="Company B" underline="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                              <GridPane fx:id="companyB" layoutX="97.0" layoutY="123.0" prefHeight="445.0" prefWidth="884.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="410.0" minWidth="10.0" prefWidth="404.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="472.0" minWidth="10.0" prefWidth="175.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <TextField fx:id="productionB" prefHeight="27.0" prefWidth="219.0" promptText="200.000,00" text="200000.00" GridPane.columnIndex="1" />
+                                    <Label text="Productioncapacity" />
+                                    <Label text="Rationalisationfactor" GridPane.rowIndex="1" />
+                                    <Label text="Employmenteffect" GridPane.rowIndex="2" />
+                                    <Label text="Wagerate" GridPane.rowIndex="3" />
+                                    <Label text="Incidentalexpenserate" GridPane.rowIndex="4" />
+                                    <Label text="Depreciationrate" GridPane.rowIndex="5" />
+                                    <Label text="Specificcapitalrequirement" GridPane.rowIndex="6" />
+                                    <Label text="Materialcost" GridPane.rowIndex="7" />
+                                    <Label text="Taxrate" GridPane.rowIndex="8" />
+                                    <TextField fx:id="employeeB0" promptText="1,00" text="1.00" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="employeeB1" promptText="0,001" text="0.001" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <TextField fx:id="labourCostB0" prefHeight="27.0" prefWidth="208.0" promptText="40.000,00" text="40000.00" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <TextField fx:id="labourCostB1" promptText="30.000,00" text="30000.00" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <TextField fx:id="capitalCostB0" promptText="0,1" text="0.1" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <TextField fx:id="capitalCostB1" prefHeight="27.0" prefWidth="177.0" promptText="10,00" text="10.00" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                    <TextField fx:id="materialCostB" promptText="100,00" text="100.00" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                    <TextField fx:id="unitCostB" promptText="0,2" text="0.2" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" />
+                                 </padding>
+                              </GridPane>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <children>
+                  <SplitPane dividerPositions="0.46205357142857145" layoutX="194.0" layoutY="2.0" prefHeight="293.0" prefWidth="898.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="2.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="270.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <Label alignment="TOP_CENTER" layoutX="249.0" layoutY="3.0" prefHeight="23.0" prefWidth="668.0" text="Marketprice Parameters" underline="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                              <GridPane fx:id="marketPriceParam" layoutX="39.0" layoutY="61.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="340.0" minWidth="10.0" prefWidth="260.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="361.0" minWidth="10.0" prefWidth="150.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints vgrow="SOMETIMES" />
+                                  <RowConstraints vgrow="SOMETIMES" />
+                                  <RowConstraints vgrow="SOMETIMES" />
+                                    <RowConstraints vgrow="SOMETIMES" />
+                                    <RowConstraints vgrow="SOMETIMES" />
+                                    <RowConstraints vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label text="Reactionrate" GridPane.rowIndex="1" />
+                                    <Label alignment="CENTER" text="Demand" />
+                                    <Label text="Marketprice" GridPane.rowIndex="2" />
+                                    <TextField fx:id="marketPrice0" promptText="1.000.000,00" text="1000000.00" GridPane.columnIndex="1" />
+                                    <TextField fx:id="marketPrice1" promptText="1,00" text="1.00" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="marketPrice2" promptText="300,00" text="300.00" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label text="INITIAL TIME" GridPane.rowIndex="3" />
+                                    <Label text="FINAL TIME" GridPane.rowIndex="4" />
+                                    <Label text="TIMESTEP" GridPane.rowIndex="5" />
+                                    <TextField disable="true" promptText="0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <TextField disable="true" promptText="0,0625" text="0.0625" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <TextField disable="true" promptText="50" text="50" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <Label layoutX="40.0" layoutY="184.0" text="Input parameter as double  ">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font></Label>
+                              <Button fx:id="showDiagrams" layoutX="248.0" layoutY="221.0" mnemonicParsing="false" onAction="#showDiagrams" text="Show diagrams" />
+                              <Button fx:id="simulate" layoutX="248.0" layoutY="181.0" mnemonicParsing="false" onAction="#simulate" text="Apply" />
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+        </items>
+         <opaqueInsets>
+            <Insets bottom="2.0" left="2.0" right="2.0" />
+         </opaqueInsets>
+      </SplitPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ChartController">
+   <children>
+      <SplitPane dividerPositions="0.5183946488294314" layoutX="62.0" layoutY="88.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <SplitPane dividerPositions="0.4798657718120805" layoutX="274.0" layoutY="45.0" prefHeight="194.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <LineChart fx:id="companyA" layoutX="-30.0" layoutY="-61.0" title="Company A" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <xAxis>
+                                  <CategoryAxis side="BOTTOM" fx:id="xAxisCompanyA" />
+                                </xAxis>
+                                <yAxis>
+                                  <NumberAxis fx:id="yAxisCompanyA" side="LEFT" />
+                                </yAxis>
+                              </LineChart>
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <LineChart fx:id="companyB" layoutX="-65.0" layoutY="-92.0" title="Company B" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <xAxis>
+                                  <CategoryAxis side="BOTTOM" fx:id="xAxisCompanyB" />
+                                </xAxis>
+                                <yAxis>
+                                  <NumberAxis fx:id="yAxisCompanyB" side="LEFT" />
+                                </yAxis>
+                              </LineChart>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <SplitPane dividerPositions="0.48322147651006714" layoutX="193.0" layoutY="-53.0" prefHeight="196.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <LineChart fx:id="marketPrice" createSymbols="false" layoutX="-15.0" layoutY="-158.0" title="Marketprice" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <xAxis>
+                                  <CategoryAxis side="BOTTOM" fx:id="xAxisMarketPrice" />
+                                </xAxis>
+                                <yAxis>
+                                  <NumberAxis fx:id="yAxisMarketPrice" side="LEFT" />
+                                </yAxis>
+                              </LineChart>
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <GridPane layoutX="40.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="192.0" minWidth="10.0" prefWidth="192.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label text="Select graph for company B" GridPane.rowIndex="1" />
+                                    <Label text="Select graph for marketprice" GridPane.rowIndex="2" />
+                                    <Label text="Select graph for company A" />
+                                    <VBox GridPane.columnIndex="1">
+                                       <children>
+                                          <ChoiceBox fx:id="choiceBoxA" prefWidth="150.0" />
+                                          <Button fx:id="SubmitA" alignment="CENTER" mnemonicParsing="false" onAction="#submitA" text="Submit" />
+                                       </children>
+                                    </VBox>
+                                    <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <children>
+                                          <ChoiceBox fx:id="choiceBoxB" prefWidth="150.0" />
+                                          <Button fx:id="SubmitB" mnemonicParsing="false" onAction="#submitB" text="Submit" />
+                                       </children>
+                                    </VBox>
+                                    <VBox GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                       <children>
+                                          <ChoiceBox fx:id="choiceBoxC" prefWidth="150.0" />
+                                          <Button fx:id="submitM" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#submitC" text="Submit" />
+                                       </children>
+                                    </VBox>
+                                    <Button fx:id="goBack" mnemonicParsing="false" onAction="#switchScene" text="Return" GridPane.rowIndex="3" />
+                                    <Button fx:id="exit" mnemonicParsing="false" onAction="#exit" text="Exit" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                 </children>
+                                 <padding>
+                                    <Insets left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </GridPane>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
