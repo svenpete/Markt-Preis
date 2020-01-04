@@ -81,11 +81,11 @@ public class JDBC
         Table.batchUpdate(connection,simulation1);
     }
 
+
     /**
-     * methods for creating table each
+     * methods for creating tables
      * @throws SQLException
      */
-
     private static void createTableCapitalCost(Connection connection) throws SQLException
     {
         Table table_capital_cost = new Table("capitalcost")

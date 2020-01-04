@@ -1,8 +1,10 @@
 package JDBC;
+
 public class PrimaryKey extends Attribute
 {
 
-    public PrimaryKey(String name, Type type) {
+    public PrimaryKey(String name, Type type)
+    {
         super(name, type);
     }
 
@@ -10,4 +12,5 @@ public class PrimaryKey extends Attribute
     {
         return sqlStatementPrimaryKey.isEmpty() ? name :sqlStatementPrimaryKey + ", name";
     }
+
 }

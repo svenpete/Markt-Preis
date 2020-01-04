@@ -20,9 +20,9 @@ import java.util.List;
 
 public class SetterController
 {
+    private List<String> datenliste;
 
-    private    List<String> datenliste;
-
+    //company A
     @FXML
     private GridPane companyA;
 
@@ -31,19 +31,16 @@ public class SetterController
 
     @FXML
     private TextField employeeA0;
-
     @FXML
     private TextField employeeA1;
 
     @FXML
     private TextField labourCostA0;
-
     @FXML
     private TextField labourCostA1;
 
     @FXML
     private TextField capitalCostA0;
-
     @FXML
     private TextField capitalCostA1;
 
@@ -53,6 +50,9 @@ public class SetterController
     @FXML
     private TextField unitCostA;
 
+
+
+    //company B
     @FXML
     private GridPane companyB;
 
@@ -61,19 +61,16 @@ public class SetterController
 
     @FXML
     private TextField employeeB0;
-
     @FXML
     private TextField employeeB1;
 
     @FXML
     private TextField labourCostB0;
-
     @FXML
     private TextField labourCostB1;
 
     @FXML
     private TextField capitalCostB0;
-
     @FXML
     private TextField capitalCostB1;
 
@@ -83,38 +80,39 @@ public class SetterController
     @FXML
     private TextField unitCostB;
 
+
+
+    //market price
     @FXML
     private GridPane marketPriceParam;
 
     @FXML
     private TextField marketPrice0;
-
     @FXML
     private TextField marketPrice1;
-
     @FXML
     private TextField marketPrice2;
 
     @FXML
     private Button showDiagrams;
-
     @FXML
     private Button simulate;
 
 
-    @FXML
-    void simulate(ActionEvent event) throws SQLException {
 
+    @FXML
+    void simulate(ActionEvent event) throws SQLException
+    {
         Simulation simulation = new Simulation();
 
-        //fill list with parameter from setter.fxml
+        // fill list with parameter from setter.fxml
         List<Double> param = getParam();
-        simulation.simulate(800,1,param);
+        simulation.simulate(800,1, param);
 
         // saves values in database
-        JDBC.createDatabase(JDBC.getConnection(),simulation);
-
+        JDBC.createDatabase(JDBC.getConnection(), simulation);
     }
+
 
     private List<Double> getParam()
     {
@@ -143,16 +141,16 @@ public class SetterController
         datenliste.add( Double.parseDouble(marketPrice0.getText()));
         datenliste.add( Double.parseDouble(marketPrice1.getText()));
         datenliste.add( Double.parseDouble(marketPrice2.getText()));
+
         return datenliste;
     }
 
 
 
     /**
-     * this function switches the scenes
+     * switching the scenes
      * for diagram presentation
      * input is from scene before
-     * @param event
      * @throws IOException
      */
     @FXML
@@ -164,7 +162,6 @@ public class SetterController
 
         Scene scene = new Scene(root);
         stage.setScene(scene);
-
     }
 
 
@@ -173,9 +170,6 @@ public class SetterController
     {
 
     }
-
-
-
 
 }
 

@@ -3,7 +3,7 @@ package JDBC;
 public class Attribute
 {
     String name;
-    Type type;
+    Type   type;
 
 
     public Attribute(String name, Type type)

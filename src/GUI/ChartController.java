@@ -1,4 +1,5 @@
 package GUI;
+
 import JDBC.Dataset;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,60 +25,53 @@ public class ChartController implements Initializable
 {
     ObservableList<Dataset> dataset = null;
 
+    //assign items to checkboxes
     ObservableList<String> itemA = FXCollections.observableArrayList("Capitalcost","Materialcost","Labourcost",
                                 "Unitcost","Productioncost","Employee","Productioncapacity");
 
     ObservableList<String> itemB = FXCollections.observableArrayList("Marketprice" );
 
+
     @FXML
     private LineChart<String, Number> companyA;
-
     @FXML
     private CategoryAxis xAxisCompanyA;
-
     @FXML
     private NumberAxis yAxisCompanyA;
 
     @FXML
     private LineChart<String, Number> companyB;
-
     @FXML
     private CategoryAxis xAxisCompanyB;
-
     @FXML
     private NumberAxis yAxisCompanyB;
 
     @FXML
     private LineChart<String, Number> marketPrice;
-
     @FXML
     private CategoryAxis xAxisMarketPrice;
-
     @FXML
     private NumberAxis yAxisMarketPrice;
 
 
     @FXML
     private ChoiceBox<String> choiceBoxA;
-
     @FXML
     private Button SubmitA;
 
     @FXML
     private ChoiceBox<String> choiceBoxB;
-
     @FXML
     private Button SubmitB;
 
     @FXML
     private ChoiceBox<String> choiceBoxC;
-
     @FXML
     private Button submitM;
 
+
     @FXML
     private Button goBack;
-
     @FXML
     private Button exit;
 
@@ -86,13 +80,15 @@ public class ChartController implements Initializable
      * exit programm properly
      */
     @FXML
-    void exit(ActionEvent event) {
+    void exit(ActionEvent event)
+    {
         System.exit(0);
     }
 
+
     /**
-     * submits the selected diagram for companyA
-     * and draws it on lineChart for companyA
+     * submits the selected diagram for company A
+     * and draws it on line chart for company A
      */
     @FXML
     void submitA(ActionEvent event) throws SQLException
@@ -108,12 +104,12 @@ public class ChartController implements Initializable
 
         // disables symbols for linechart companyA
         companyA.setCreateSymbols(false);
-
     }
 
+
     /**
-     * submits the selected diagram for companyB
-     * and draws it on lineChart for company B
+     * submits the selected diagram for company B
+     * and draws it on line chart for company B
      */
     @FXML
     void submitB(ActionEvent event) throws SQLException
@@ -131,33 +127,31 @@ public class ChartController implements Initializable
         companyB.setCreateSymbols(false);
     }
 
+
     /**
-     * submits the chosen diagram for marketprice
-     * and draws it on lineChart for marketprice
+     * submits the chosen diagram for market price
+     * and draws it on line chart for market price
      */
     @FXML
     void submitC(ActionEvent event) throws SQLException
     {
-
         String s = choiceBoxC.getValue();
-
 
         ObservableList<XYChart.Series<String, Number>> chartData = getMarketPriceData(0);
         marketPrice.getData().addAll(chartData);
         marketPrice.setCreateSymbols(false);
-
-
     }
 
+
     /**
+     * checks selected item in choiceboxes
      * @param input to check selected item in choicebox
      * @return the position of the item in the list
      */
     private int checkSelectedItem(String input)
     {
-
-        String[] toCheck = {"Capitalcost","Materialcost","Labourcost",
-                "Unitcost","Productioncost","Employee","Productioncapacity"};
+        String[] toCheck = {"Capitalcost", "Materialcost", "Labourcost", "Unitcost", "Productioncost",
+                            "Employee", "Productioncapacity"};
 
         for (int i = 0; i < toCheck.length; i++)
         {
@@ -168,6 +162,13 @@ public class ChartController implements Initializable
         return 404;
     }
 
+
+    /**
+     * drawing the graph with data
+     * @param position to get data from observable array list
+     * @return list with series of x and y values
+     * @throws SQLException
+     */
     private ObservableList<XYChart.Series<String, Number>> getChartDataCompany(Integer position, String company) throws SQLException
     {
         // save a list with dataset
@@ -176,8 +177,7 @@ public class ChartController implements Initializable
         // selected data to draw on diagram
         Double[] aValue = dataCompany.get(position).getData();
 
-
-        //return list with series of x and y values
+        // return list with series of x and y values
         ObservableList<XYChart.Series<String, Number>> answer = FXCollections.observableArrayList();
 
         XYChart.Series<String, Number> aSeries = new XYChart.Series<>();
@@ -190,24 +190,29 @@ public class ChartController implements Initializable
         {
             Double d = aValue[i];
             aSeries.getData().add(new XYChart.Data(Integer.toString(i), d));
-
-
-
         }
+
         // adding series to observableList
         answer.addAll(aSeries);
+
         return answer;
     }
 
 
-    private ObservableList<XYChart.Series<String, Number>> getMarketPriceData(Integer position) throws SQLException {
+    /**
+     * drawing the graph market price with data
+     * @param position to get data from observable array list
+     * @return list with series of x and y values
+     * @throws SQLException
+     */
+    private ObservableList<XYChart.Series<String, Number>> getMarketPriceData(Integer position) throws SQLException
+    {
         // zero because  no company exits
         ObservableList<Dataset> dataCompany = ModelChart.getMarketPriceData("0");
 
         Double[] aValue = dataCompany.get(position).getData();
 
-
-        //return list with series of x and y values
+        // return list with series of x and y values
         ObservableList<XYChart.Series<String, Number>> answer = FXCollections.observableArrayList();
 
         XYChart.Series<String, Number> aSeries = new XYChart.Series<>();
@@ -215,45 +220,41 @@ public class ChartController implements Initializable
         // set name of series
         aSeries.setName(dataCompany.get(position).getTableName() +": "+ dataCompany.get(position).getColumnName());
 
-
         for (int i = 0; i < 800; i++)
         {
             Double d = aValue[i];
             aSeries.getData().add(new XYChart.Data(Integer.toString(i), d));
-
-
-
         }
+
         answer.addAll(aSeries);
+
         return answer;
     }
 
 
-
     // goes back to setter.fxml
     @FXML
-    void switchScene(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("setter.fxml")); // create and load() view
+    void switchScene(ActionEvent event) throws IOException
+    {
+        Parent root = FXMLLoader.load(getClass().getResource("setter.fxml"));
         Stage stage = (Stage) goBack.getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
-
     }
 
 
-    //
+    /**
+     * setting items in choicebox for initializing
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
-
-        // setting items in choicebox
         choiceBoxA.setItems(itemA);
         choiceBoxB.setItems(itemA);
         choiceBoxC.setItems(itemB);
-
-
     }
-
 
 }
 
