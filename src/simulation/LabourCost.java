@@ -1,12 +1,10 @@
 package simulation;
 
-public class LabourCost extends Cost {
-
-    private  double wageRate;
-
-    private  double incidentalExpenseRate;
-
-    private  Employee employe;
+public class LabourCost extends Cost
+{
+    private double   wageRate;
+    private double   incidentalExpenseRate;
+    private Employee employe;
 
 
     public LabourCost(Double wageRate, Double incidentalExpenseRate, Employee employee)
@@ -14,7 +12,6 @@ public class LabourCost extends Cost {
         this.employe               = employee;
         this.wageRate              = wageRate ;
         this.incidentalExpenseRate = incidentalExpenseRate ;
-
     }
 
 
@@ -25,10 +22,10 @@ public class LabourCost extends Cost {
     @Override
     public double calculateCosts()
     {
-         cost = ( wageRate + incidentalExpenseRate ) * employe.getEmployees();
-
+        cost = ( wageRate + incidentalExpenseRate ) * employe.getEmployees();
         return cost;
     }
+
 
     public double getWageRate()
     {

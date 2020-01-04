@@ -11,20 +11,19 @@ public class CapitalCost extends Cost
 
     public CapitalCost(Double DEPRECIATIONRATE, Double SPECIFICCAPITALREQUIRMENT, Production production)
     {
-        this.DEPRECIATIONRATE = DEPRECIATIONRATE;
+        this.DEPRECIATIONRATE          = DEPRECIATIONRATE;
         this.SPECIFICCAPITALREQUIRMENT = SPECIFICCAPITALREQUIRMENT;
-        this.production = production;
-
+        this.production                = production;
     }
 
-    /** Calculation for capitalcost
+
+    /** Calculation for capital costs
      * @return cost
      */
     @Override
     public double calculateCosts()
     {
-        cost = ((DEPRECIATIONRATE * production.getProductionCapacity()
-                                                * SPECIFICCAPITALREQUIRMENT) );
+        cost = ((DEPRECIATIONRATE * production.getProductionCapacity() * SPECIFICCAPITALREQUIRMENT) );
         return cost;
     }
 
@@ -34,11 +33,13 @@ public class CapitalCost extends Cost
         return DEPRECIATIONRATE;
     }
 
-    public double getSPECIFICCAPITALREQUIREMENT() {
+    public double getSPECIFICCAPITALREQUIREMENT()
+    {
         return SPECIFICCAPITALREQUIRMENT;
     }
 
-    public void setProduction(Production production) {
+    public void setProduction(Production production)
+    {
         this.production = production;
     }
 

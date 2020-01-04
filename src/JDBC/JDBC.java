@@ -1,7 +1,6 @@
 package JDBC;
 
 import simulation.Simulation;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -10,29 +9,27 @@ import java.sql.Statement;
 public class JDBC
 {
     /**
-     * returns a connection to the database
+     * @return connection to database
      */
     public static Connection getConnection() throws SQLException
     {
         Connection connection = DriverManager.getConnection("jdbc:mariadb://localhost:3306", "root","osca" );
         System.out.println("Connection established");
+
         return connection;
     }
 
 
     /**
-     *
-     * @param connection
-     * @param sqlStatement
-     * @return a number of tupel affected by sql statement
+     * @return number of tupel affected by sql statement
      * @throws SQLException
      */
     public static int updateStatement(Connection connection, String sqlStatement) throws SQLException
     {
         Statement statement = connection.createStatement();
         int tuppleUpdated = statement.executeUpdate(sqlStatement);
-
         System.out.println("SQL update exceute: " + sqlStatement);
+
         return tuppleUpdated;
     }
 
@@ -45,7 +42,10 @@ public class JDBC
         updateStatement(connection, schema.use());
     }
 
-
+    /**
+     * creating blank schema for database without simulation
+     * @throws SQLException
+     */
     public static void createBlankDatabase(Connection connection) throws SQLException
     {
         createSchema(connection, "market_price");
@@ -61,6 +61,10 @@ public class JDBC
     }
 
 
+    /**
+     * creating database for simulation
+     * @throws SQLException
+     */
     public static void createDatabase(Connection connection,Simulation simulation1) throws SQLException
     {
         createSchema(connection, "market_price");
@@ -76,6 +80,11 @@ public class JDBC
 
         Table.batchUpdate(connection,simulation1);
     }
+
+    /**
+     * methods for creating table each
+     * @throws SQLException
+     */
 
     private static void createTableCapitalCost(Connection connection) throws SQLException
     {

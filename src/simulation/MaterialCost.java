@@ -2,10 +2,9 @@ package simulation;
 
 public class MaterialCost extends Cost
 {
+    private final double MATERIALCOSTUNIT;
+    private Production   production;
 
-    private final double MATERIALCOSTUNIT;   //Materialkostensatz [€/Stück] 100 Basis
-
-    private Production production;
 
     public MaterialCost(Double MATERIALCOSTUNIT, Production production)
     {
@@ -16,13 +15,12 @@ public class MaterialCost extends Cost
 
     /** calculate the materialcost
      * materialCostRate describes the cost of one unit
-     * dt as parameter of time
-     * @return suoer.costs as double
+     * @return cost
      */
     @Override
     public double calculateCosts()
     {
-        cost =  (MATERIALCOSTUNIT * production.getProductionCapacity())   ;
+        cost =  (MATERIALCOSTUNIT * production.getProductionCapacity());
         return cost;
     }
 
@@ -32,18 +30,14 @@ public class MaterialCost extends Cost
         return MATERIALCOSTUNIT;
     }
 
-
     public Production getProduction()
     {
         return production;
     }
 
-
     public void setProduction(Production production)
     {
         this.production = production;
     }
-
-
 
 }
