@@ -1,5 +1,4 @@
 package GUI;
-
 import JDBC.Dataset;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,7 +15,6 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -93,45 +91,53 @@ public class ChartController implements Initializable
     }
 
     /**
-     * submits the choosen diagram for companyA
+     * submits the selected diagram for companyA
+     * and draws it on lineChart for companyA
      */
     @FXML
     void submitA(ActionEvent event) throws SQLException
     {
+        // saves the value of chosen diagram in choicebox
+        String choosenDiagrammA = choiceBoxA.getValue();
 
-        String s = choiceBoxA.getValue();
+        //  saves a set of Series for chosen diagram
+        ObservableList<XYChart.Series<String, Number>> chartData = getChartDataCompany(checkSelectedItem(choosenDiagrammA),"A");
 
-
-        ObservableList<XYChart.Series<String, Number>> chartData = getChartDataCompany(checkSelectedItem(s),"A");
-
-
+        // add series to linechart companyA
         companyA.getData().addAll(chartData);
+
+        // disables symbols for linechart companyA
         companyA.setCreateSymbols(false);
 
-
-
     }
 
     /**
-     * submits the choosen diagram for companyB
+     * submits the selected diagram for companyB
+     * and draws it on lineChart for company B
      */
     @FXML
-    void submitB(ActionEvent event) throws SQLException {
-        String s = choiceBoxB.getValue();
-        ObservableList<XYChart.Series<String, Number>> chartData = getChartDataCompany(checkSelectedItem(s),"B");
+    void submitB(ActionEvent event) throws SQLException
+    {
+        // saves the value of chosen diagram in choicebox
+        String choosenDiagrammB = choiceBoxB.getValue();
 
+        //  saves a set of Series for chosen diagram
+        ObservableList<XYChart.Series<String, Number>> chartData = getChartDataCompany(checkSelectedItem(choosenDiagrammB),"B");
+
+        // add series to linechart companyB
         companyB.getData().addAll(chartData);
+
+        // disables symbols for linechart companyB
         companyB.setCreateSymbols(false);
-
-
-
     }
 
     /**
-     * submits the choosen diagram for marketprice
+     * submits the chosen diagram for marketprice
+     * and draws it on lineChart for marketprice
      */
     @FXML
-    void submitC(ActionEvent event) throws SQLException {
+    void submitC(ActionEvent event) throws SQLException
+    {
 
         String s = choiceBoxC.getValue();
 
@@ -159,13 +165,15 @@ public class ChartController implements Initializable
                 return i;
         }
 
-        return 99;
+        return 404;
     }
 
     private ObservableList<XYChart.Series<String, Number>> getChartDataCompany(Integer position, String company) throws SQLException
     {
+        // save a list with dataset
         ObservableList<Dataset> dataCompany = ModelChart.getCompanyData(company);
 
+        // selected data to draw on diagram
         Double[] aValue = dataCompany.get(position).getData();
 
 
@@ -174,9 +182,10 @@ public class ChartController implements Initializable
 
         XYChart.Series<String, Number> aSeries = new XYChart.Series<>();
 
+        // set series name in diagram
         aSeries.setName(dataCompany.get(position).getTableName() +": "+ dataCompany.get(position).getColumnName());
 
-
+        // filling series with data
         for (int i = 0; i < 800; i++)
         {
             Double d = aValue[i];
@@ -185,6 +194,7 @@ public class ChartController implements Initializable
 
 
         }
+        // adding series to observableList
         answer.addAll(aSeries);
         return answer;
     }
@@ -230,13 +240,13 @@ public class ChartController implements Initializable
 
     }
 
-    // set items in choicebox
 
+    //
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
 
-
+        // setting items in choicebox
         choiceBoxA.setItems(itemA);
         choiceBoxB.setItems(itemA);
         choiceBoxC.setItems(itemB);

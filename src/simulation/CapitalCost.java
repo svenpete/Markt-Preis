@@ -2,12 +2,12 @@ package simulation;
 
 public class CapitalCost extends Cost
 {
-    private final double DEPRECIATIONRATE;    //Abschreibungssatz
+    private final double DEPRECIATIONRATE;
 
-    private final double SPECIFICCAPITALREQUIRMENT;     //spezifischer Kapitalbedarf
-
+    private final double SPECIFICCAPITALREQUIRMENT;
 
     private Production production;
+
 
     public CapitalCost(Double DEPRECIATIONRATE, Double SPECIFICCAPITALREQUIRMENT, Production production)
     {
@@ -17,27 +17,24 @@ public class CapitalCost extends Cost
 
     }
 
-    /** Calculation for CapitalCost  //Berechnung der Kapitalkosten
-     *  product of depreciationRate [ fix ]  ||  specificCapitalRequirement [ fix ] ||  ProductionCapacity  [ DYNAMIK ]
-     *  ProductionCapacity x2 > x1  increase
-     *  ProductionCapacity X2 < x1 decrease
-     * @return super.cost
+    /** Calculation for capitalcost
+     * @return cost
      */
     @Override
     public double calculateCosts()
     {
-        cost =((DEPRECIATIONRATE * production.getProductionCapacity()
+        cost = ((DEPRECIATIONRATE * production.getProductionCapacity()
                                                 * SPECIFICCAPITALREQUIRMENT) );
-
         return cost;
     }
 
 
-    public double getDEPRECIATIONRATE() {
+    public double getDEPRECIATIONRATE()
+    {
         return DEPRECIATIONRATE;
     }
 
-    public double getSPECIFICCAPITALREQUIRMENT() {
+    public double getSPECIFICCAPITALREQUIREMENT() {
         return SPECIFICCAPITALREQUIRMENT;
     }
 

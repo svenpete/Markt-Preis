@@ -6,7 +6,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Table {
+public class Table
+{
     String name;
     ArrayList<Attribute> attributes = new ArrayList<>();
 
@@ -60,37 +61,49 @@ public class Table {
         return rowsAffected;
     }
 
+
+    /**
+     *
+     * @param connection
+     * @param tableName to select the table for data to insert
+     * @param values to insert in the database
+     * @param id to determain which ID is given
+     * @return the amount of affected rows
+     * @throws SQLException
+     */
     public static int[] fill(Connection connection, String tableName, Double[][] values, String id) throws SQLException  // only Double or int attr
     {
-
+        // create a prepared statement
         String insertStringSQL = createInsertString(tableName, values[0].length);
         PreparedStatement preparedStatement = connection.prepareStatement(insertStringSQL);
 
+        // saves Types for compare
         List <Integer> checkTypes = checkType(connection,tableName);
-
 
         for (int i = 0; i < values.length; i++) // row counter
         {
-
-            for (int j = 0; j < values[0].length; j++) // line counter
+            for (int j = 0; j < values[0].length; j++) // column counter
             {
-
                 // 12 = VARCHAR
                 if (checkTypes.get(j) == 12 )
                 {
                     if (i < 10)
                     {
+                        // for a proper ID solution
                         String insertID = id + "00" + i;
                         // count start at 1
                         preparedStatement.setString(j + 1, insertID);
                     }
                     else if (i < 100)
                     {
+                        // for a proper ID solution
                         String insertID = id + "0" + i;
                         // count start at 1
                         preparedStatement.setString(j + 1, insertID);
                     }
-                    else   {
+                    else
+                    {
+                            // for a proper ID solution
                         String insertID = id + i;
                         // count start at 1
                         preparedStatement.setString(j + 1, insertID);
@@ -100,42 +113,48 @@ public class Table {
 
                 // 3 = DECIMAL
                 if (checkTypes.get(j) == 3)
-                preparedStatement.setDouble(j + 1, values[i][j]);
-
+                    preparedStatement.setDouble(j + 1, values[i][j]);
             }
 
              preparedStatement.addBatch();
 
         }
+        // saves the amount of affected rows
         int[] rowsAffected = preparedStatement.executeBatch();
+
         preparedStatement.close();
         System.out.println("Rows inserted:" + rowsAffected.length);
+
         return rowsAffected;
     }
 
 
-
-    public static String createInsertString(String dbname, Integer size) throws SQLException  // only Double or int attr
+    /**
+     *
+     * @param dbname
+     * @param size important to determine the size of the inserted string
+     * @return
+     * @throws SQLException
+     */
+    public static String createInsertString(String dbname, Integer size) throws SQLException
     {
+        String insertStmt = "INSERT INTO " + dbname + " VALUES( ";
 
-        String insertStmt = "INSERT INTO " + dbname +
-                " VALUES( ";
-
-        for (int i = 0; i < size; i++) {
+        // sets ? for size
+        for (int i = 0; i < size; i++)
+        {
             insertStmt += "?";
-
             if (i + 1 < size) // sql syntax error so --> +1
                 insertStmt += " , ";
-
-
         }
         insertStmt += " );";
+
         return insertStmt;
     }
 
+
     public static int countRows(Connection connection, String tablename) throws SQLException
     {
-
         String sql = "SELECT COUNT(*) AS TOTAL FROM ? ;";
         PreparedStatement stmt = connection.prepareStatement(sql);
 
@@ -150,8 +169,9 @@ public class Table {
 
         stmt.close();
 
-         return count;
+        return count;
     }
+
 
     public static void showAllTables(Connection connection) throws SQLException {
         String catalog = null;

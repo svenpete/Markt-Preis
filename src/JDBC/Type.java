@@ -1,6 +1,7 @@
 package JDBC;
 
-public enum  Type {
+public enum  Type
+{
 
 
     BOOLEAN(  "Boolean"),

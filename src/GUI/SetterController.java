@@ -13,7 +13,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import simulation.Simulation;
-
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -102,30 +101,19 @@ public class SetterController
     @FXML
     private Button simulate;
 
-    private Node getNodeFromGridPane(GridPane gridPane, int col, int row)
-    {
-        for (Node node : gridPane.getChildren() )
-        {
-            if (GridPane.getColumnIndex(node) == col
-                    && GridPane.getRowIndex(node) == row)
-            {
-                return node;
-            }
-        }
-        return null;
-    }
-
-
 
     @FXML
     void simulate(ActionEvent event) throws SQLException {
 
         Simulation simulation = new Simulation();
+
+        //fill list with parameter from setter.fxml
         List<Double> param = getParam();
-        System.out.println(param.size());
         simulation.simulate(800,1,param);
+
+        // saves values in database
         JDBC.createDatabase(JDBC.getConnection(),simulation);
-        System.out.println("ok");
+
     }
 
     private List<Double> getParam()
@@ -158,7 +146,7 @@ public class SetterController
         return datenliste;
     }
 
-    private
+
 
     /**
      * this function switches the scenes
@@ -170,14 +158,14 @@ public class SetterController
     @FXML
     void showDiagrams(ActionEvent event) throws IOException
     {
-        Parent root = FXMLLoader.load(getClass().getResource("chart.fxml")); // create and load() view
+        Parent root = FXMLLoader.load(getClass().getResource("chart.fxml"));
+
         Stage stage = (Stage) showDiagrams.getScene().getWindow();
 
         Scene scene = new Scene(root);
         stage.setScene(scene);
 
     }
-
 
 
     @FXML

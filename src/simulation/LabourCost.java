@@ -6,7 +6,7 @@ public class LabourCost extends Cost {
 
     private  double incidentalExpenseRate;
 
-    private Employee employe;
+    private  Employee employe;
 
 
     public LabourCost(Double wageRate, Double incidentalExpenseRate, Employee employee)
@@ -18,7 +18,10 @@ public class LabourCost extends Cost {
     }
 
 
-
+    /**
+     * calculates the labour costs
+     * @return cost
+     */
     @Override
     public double calculateCosts()
     {

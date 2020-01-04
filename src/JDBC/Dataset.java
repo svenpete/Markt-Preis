@@ -29,7 +29,10 @@ public class Dataset
     }
 
 
-
+    /**
+     * excute a query and saves the values of the resultset in data
+     * @throws SQLException
+     */
     public  void getResultSet( ) throws SQLException
     {
         Connection connection = JDBC.getConnection();

@@ -10,4 +10,5 @@ public abstract class Cost
     public double getCost() {
         return cost;
     }
+
 }

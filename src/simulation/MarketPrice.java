@@ -4,18 +4,18 @@ import java.util.ArrayList;
 
 public class MarketPrice
 {
-    private     final         double DEMAND;
+    private     final   double DEMAND;
     private     final   double REACTIONRATE;
-    private              double          marketPrice;       // for unitcot access
+    private             double marketPrice;
 
 
 
 
-    private             double          pricePressureCosts;                 //Preisdruck Kosten
-    private             double          mismatchPrice;                      //Fehlanpassung Preis
+    private             double          pricePressureCosts;
+    private             double          mismatchPrice;
 
-    private             double          pricePressureDemand;              //Preisdruck Nachfrage
-    private             double          mismatchDemand;                  //Fehlanpassung Nachfrage
+    private             double          pricePressureDemand;
+    private             double          mismatchDemand;
 
     private             double          costAdjustment;
 
@@ -33,8 +33,13 @@ public class MarketPrice
     }
 
 
-
-    // Anpassungskosten
+    /**
+     * calculates the cost adjustment
+     * @param productionA
+     * @param productionB
+     * @param productionSUM
+     * @return
+     */
     public double calcCostAdjustment(Double productionA, Double productionB, Double productionSUM)
     {
         costAdjustment = (-0.5) * (((productionA / productionSUM) * unitCosts.get(0).getBenefitMarge()

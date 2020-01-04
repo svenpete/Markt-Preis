@@ -3,24 +3,26 @@ package simulation;
 public class Employee
 {
     private     final   double RATIONALISATIONFACTOR;
+    private     final   double EMPLOYMENTEFFECT;
 
-    private     double              employmentEffect;
     private     double              employees;
-
     private     Production          production;
 
-    public Employee(Double RATIONALISATIONFACTOR, Double employmentEffect, Production production)
+    public Employee(Double RATIONALISATIONFACTOR, Double EMPLOYMENTEFFECT, Production production)
     {
         this.production = production;
         this.RATIONALISATIONFACTOR = RATIONALISATIONFACTOR;
-        this.employmentEffect      = employmentEffect;
+        this.EMPLOYMENTEFFECT = EMPLOYMENTEFFECT;
     }
 
-
+    /**
+     * calculates the employees
+     * @return employees
+     */
     public double calculateEmployees()
     {
 
-        employees = employmentEffect * production.getProductionCapacity() / RATIONALISATIONFACTOR;
+        employees = EMPLOYMENTEFFECT * production.getProductionCapacity() / RATIONALISATIONFACTOR;
 
         return employees;
     }
@@ -31,9 +33,9 @@ public class Employee
         return employees;
     }
 
-    public double getEmploymentEffect()
+    public double getEMPLOYMENTEFFECT()
     {
-        return employmentEffect;
+        return EMPLOYMENTEFFECT;
     }
 
     public Production getProduction()
